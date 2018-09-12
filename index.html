@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>滑动删除</title>
+<meta content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta name="format-detection" content="telephone=no" searchtype="map">
+<link rel="stylesheet" type="text/css" href="css/basic.css">
+<script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
+<script>
+(function(doc,win){
+	var docEl = doc.documentElement,
+	   resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+	   recalc = function(){
+			var clientWidth = docEl.clientWidth<640?docEl.clientWidth:640;
+			if (!clientWidth) return;
+			docEl.style.fontSize = 10*(clientWidth / 320) + 'px';}; 
+			recalc();
+			if (!doc.addEventListener) return;
+			win.addEventListener(resizeEvt, recalc, false);
+	})
+	(document,window);
+</script>
+<title>无标题文档</title>
+</head>
+<body>
+<div class="wx_box">
+	<ul>
+    	<li>
+        	<div class="wx_left"><p><span class="num"></span>无标题文档无标题文档无标题文档无标题文档无标题文档</p></div>
+            <div class="wx_del">删除</div>
+        </li>
+        <li>
+        	<div class="wx_left"><p>2无标题文档无标题文档无标题文档无标题文档无标题文档</p></div>
+            <div class="wx_del">删除</div>
+        </li>
+        <li>
+        	<div class="wx_left"><p>3无标题文档无标题文档无标题文档无标题文档无标题文档</p></div>
+            <div class="wx_del">删除</div>
+        </li>
+        <li>
+        	<div class="wx_left"><p>4无标题文档无标题文档无标题文档无标题文档无标题文档</p></div>
+            <div class="wx_del">删除</div>
+        </li>
+        <li>
+        	<div class="wx_left"><p>5无标题文档无标题文档无标题文档无标题文档无标题文档</p></div>
+            <div class="wx_del">删除</div>
+        </li>
+        <li>
+        	<div class="wx_left"><p>6无标题文档无标题文档无标题文档无标题文档无标题文档</p></div>
+            <div class="wx_del">删除</div>
+        </li>
+        <li>
+        	<div class="wx_left"><p>7无标题文档无标题文档无标题文档无标题文档无标题文档</p></div>
+            <div class="wx_del">删除</div>
+        </li>
+        <li>
+        	<div class="wx_left"><p>8无标题文档无标题文档无标题文档无标题文档无标题文档</p></div>
+            <div class="wx_del">删除</div>
+        </li>
+        <li>
+        	<div class="wx_left"><p>9无标题文档无标题文档无标题文档无标题文档无标题文档</p></div>
+            <div class="wx_del">删除</div>
+        </li>
+        <li>
+        	<div class="wx_left"><p>10无标题文档无标题文档无标题文档无标题文档无标题文档</p></div>
+            <div class="wx_del">删除</div>
+        </li>
+        <li>
+        	<div class="wx_left"><p>11无标题文档无标题文档无标题文档无标题文档无标题文档</p></div>
+            <div class="wx_del">删除</div>
+        </li>
+        <li>
+        	<div class="wx_left"><p>12无标题文档无标题文档无标题文档无标题文档无标题文档</p></div>
+            <div class="wx_del">删除</div>
+        </li>
+        <li>
+        	<div class="wx_left"><p>13无标题文档无标题文档无标题文档无标题文档无标题文档</p></div>
+            <div class="wx_del">删除</div>
+        </li>
+        <li>
+        	<div class="wx_left"><p>14无标题文档无标题文档无标题文档无标题文档无标题文档</p></div>
+            <div class="wx_del">删除</div>
+        </li>
+    </ul>    
+</div>
+</body>
+</html>
+<script type="text/javascript">
+ document.addEventListener('touchstart',function(event){
+ 	$(".num").html(event.touches.length); 
+	if(event.touches.length==1){
+		slide();
+		$(".wx_left").bind('touchmove');
+	}else{
+		$(".wx_left").unbind('touchmove');
+		}
+ });
+ function slide(){
+ var wx_del = $(".wx_del").width();
+ var Edistance =0;
+ var Mdistance =0;
+ var pos_X = 0;
+ $(".wx_left").on('touchstart',function(event){
+	 Stouch = event.originalEvent.targetTouches[0];
+	 Stouch_X = Stouch.pageX;
+	 StartPos = {x:Stouch.pageX,y:Stouch.pageY}; //取第一个touch的坐标值
+	 isScrolling = 0; //这个参数判断是垂直滚动还是水平滚动
+	 pos_X = $(this).position().left;
+	 $(".wx_left").css({"left":0});
+	 if(Mdistance < 0){
+	  	$(this).css({"left":0+'px',"transition":'0.1s'});
+	 }
+ });
+ $(".wx_left").on('touchmove',function(event){
+	 Mtouch = event.originalEvent.targetTouches[0];
+	 Mtouch_X = Mtouch.pageX;
+	 Mdistance = Mtouch_X - Stouch_X;
+	 EndPos = {x:Mtouch.pageX - StartPos.x,y:Mtouch.pageY - StartPos.y};
+	 pos_X = $(this).position().left;
+	 isScrolling = Math.abs(EndPos.x) < Math.abs(EndPos.y) ? 1:0; //isScrolling为1时，表示纵向滑动，0为横向滑动
+	 //console.log('Y:'+ Math.abs(EndPos.y))
+	 //console.log('X:'+ Math.abs(EndPos.x))
+	 if(isScrolling === 0){
+		if(Mdistance<0){
+			event.preventDefault(); //阻止触摸事件的默认行为，即阻止滚屏
+			$(this).css({"left":Mdistance+'px',"transition":'0s'});		
+		}	
+	 }
+ });
+ $(".wx_left").on('touchend',function(event){
+	 Etouch = event.originalEvent.changedTouches[0];
+	 Etouch_X= Etouch.pageX;
+	 if(pos_X<-(wx_del/2) ){
+	 	$(this).css({"left":(-wx_del)+'px',"transition":'0.1s'});
+		if(pos_X==-wx_del){
+			$(this).css({"left":0+'px',"transition":'0.1s'});
+	    }	 
+	 }else{
+		$(this).css({"left":0+'px',"transition":'0.1s'});
+	 }
+  });
+ };
+ slide();
+</script>
+<script>
+//滑动删除
+$(".wx_del").click(function(){
+	var msg = "您真的确定要删除吗？"; 
+	if (confirm(msg)==true){ 
+	  $(this).parents("li").remove();
+	 }else{ 
+	  return false; 
+	 } ;
+});
+
+</script>

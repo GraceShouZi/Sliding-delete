@@ -1,0 +1,26 @@
+@charset "utf-8";
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    border:0 none;
+    margin:0;
+    padding:0;
+	list-style-type:none;
+    vertical-align:baseline;
+	background: transparent;
+}
+/*elements*/
+div,a,input,button,select,textarea{-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-tap-highlight-color:transparent;font-family:"Arial","Microsoft YaHei";}
+input,select,textarea{outline:0;font-size:14px;border:0 none;margin:0;padding:0;-webkit-appearance:none;border-radius:0;}
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {-webkit-text-size-adjust:none}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section{display:block}
+a{text-decoration:none;color:#333;font-family:"Arial","Microsoft YaHei";}
+body{font-family:"Arial","Microsoft YaHei";-webkit-text-size-adjust:none;-webkit-user-select:none;font-size:14px;color:#333;}
+table{border-collapse:collapse;border-spacing:0}
+img{border:0;vertical-align:middle;}
+.clearfix:after{content:'\0020';display:block;height:0;clear:both}
+.clearfix{*zoom:1}
+html,body{ height:100%;}
+.wx_box{ width:100%; max-width:768px; margin:0 auto;}
+.wx_box ul li{ height:70px; overflow:hidden; margin-bottom:1rem; position:relative;}
+.wx_left{background:#efefef; width:100%; box-sizing:border-box; z-index:999; height:70px; line-height:70px; position:absolute; top:0; left:0; z-index:9;}
+.wx_left p{ padding:0 1rem;}
+.wx_del{ width:6rem; height:70px; background:#f00; position:absolute; top:0; right:0; color:#fff; line-height:70px; text-align:center; overflow:hidden;}
